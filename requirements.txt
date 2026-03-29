@@ -1,0 +1,9 @@
+synapseclient
+synapseutils
+nibabel
+monai
+torch
+torchvision
+matplotlib
+numpy
+pandas

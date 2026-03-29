@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "brats_segmentation"
+version = "0.1.0"
+description = "Brain Tumor Segmentation using MONAI and PyTorch"
+dependencies = [
+    "monai",
+    "torch",
+    "nibabel",
+    "pandas",
+    "scikit-learn",
+    "matplotlib",
+    "ipywidgets"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
