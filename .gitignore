@@ -1,4 +1,25 @@
+# Environment
 .env
-/data/
-*.egg-info
+.venv/
+venv/
+ENV/
 
+
+# Python compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Data and MONAI cache
+monai_persistent_cache/
+data/
+*.pth
+*.csv
+
+# System and IDE
+.vscode/
+.idea/
+.DS_Store
+
+
+*.egg-info

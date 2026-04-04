@@ -1,5 +1,4 @@
 synapseclient
-synapseutils
 nibabel
 monai
 torch
