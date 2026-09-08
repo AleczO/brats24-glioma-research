@@ -10,7 +10,6 @@ from src import get_brats_loaders, get_model
 os.environ['HSA_OVERRIDE_GFX_VERSION'] = '10.3.0'
 
 def run_training():
-    # 1. Configuration
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     csv_path = "./data_inventory.csv"
     best_model_path = "best_model.pth"
@@ -21,7 +20,7 @@ def run_training():
     batch_size = 2
     learning_rate = 1e-4
     
-    # 2. Component Initialization
+    
     print(f"Initializing training on: {device}")
     train_loader, val_loader = get_brats_loaders(csv_path, batch_size=batch_size)
     model = get_model().to(device)
@@ -41,7 +40,6 @@ def run_training():
 
     scaler = torch.amp.GradScaler('cuda')
 
-    # Jeśli wczytałeś model, wypadałoby zacząć od 0.5819, żeby nie nadpisać go gorszym wynikiem
     best_dice = 0.5819 if os.path.exists(best_model_path) else 0
     
     # 3. Training Loop
@@ -69,8 +67,8 @@ def run_training():
             progress_bar.set_postfix({"loss": f"{loss.item():.4f}", "avg_loss": f"{epoch_loss/step:.4f}"})
 
         torch.save(model.state_dict(), latest_model_path)
+
         
-        # 4. Validation using Sliding Window
         if (epoch + 1) % val_interval == 0:
             model.eval()
             dice_metric.reset()
